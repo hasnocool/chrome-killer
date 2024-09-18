@@ -1,0 +1,27 @@
+
+========================================
+File: /home/hasnocool/Github/active/chrome-killer/chrome_killer.py
+========================================
+import psutil
+
+def close_chromedriver_processes():
+    for process in psutil.process_iter():
+        if process.name() == "chromedriver.exe":
+            try:
+                process.kill()
+                print(f"Process {process.pid} (chromedriver.exe) killed.")
+            except Exception as e:
+                print(f"Error killing process {process.pid}: {e}")
+
+def close_chrome_processes():
+    for process in psutil.process_iter():
+        if process.name() == "chrome.exe":
+            try:
+                process.kill()
+                print(f"Process {process.pid} (chrome.exe) killed.")
+            except Exception as e:
+                print(f"Error killing process {process.pid}: {e}")
+
+if __name__ == "__main__":
+    close_chromedriver_processes()
+    close_chrome_processes()
